@@ -77,14 +77,14 @@ export const CATEGORIES: Category[] = [
     nome: "Percussão",
     descricao: "Baterias e ritmo para home studio e palco",
     imagem:
-      "https://images.unsplash.com/photo-1519892300165-cb5542fb47e7?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1571327073757-71d13c24de30?auto=format&fit=crop&w=900&q=80",
   },
   {
     id: "sopro",
     nome: "Sopro",
     descricao: "Sopros e metais com garantia da loja",
     imagem:
-      "https://images.unsplash.com/photo-1415201364774-f6f0bb35deb4?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=900&q=80",
   },
   {
     id: "acessorios",
@@ -158,7 +158,7 @@ export const PRODUCTS: Product[] = [
     destaque: true,
     estoque: "últimas unidades",
     imagem:
-      "https://images.unsplash.com/photo-1556449895-a33c06b3552a?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1525201548942-d8732f6617a0?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: "p5",
@@ -174,7 +174,7 @@ export const PRODUCTS: Product[] = [
     destaque: false,
     estoque: "pronta entrega",
     imagem:
-      "https://images.unsplash.com/photo-1612225330812-01a9c2b7dd84?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1460036521480-ff49c08c2781?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: "p6",
@@ -206,7 +206,7 @@ export const PRODUCTS: Product[] = [
     destaque: true,
     estoque: "sob encomenda",
     imagem:
-      "https://images.unsplash.com/photo-1519892300165-cb5542fb47e7?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1461784180009-21121b2f204c?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: "p8",
@@ -238,7 +238,7 @@ export const PRODUCTS: Product[] = [
     destaque: true,
     estoque: "últimas unidades",
     imagem:
-      "https://images.unsplash.com/photo-1415201364774-f6f0bb35deb4?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: "p10",
@@ -254,7 +254,7 @@ export const PRODUCTS: Product[] = [
     destaque: false,
     estoque: "pronta entrega",
     imagem:
-      "https://images.unsplash.com/photo-1576220258794-9b9c6d4d6f6a?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1609139003551-ee40f5f73ec0?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: "p11",
