@@ -46,7 +46,7 @@ export function Nav() {
               rel="noreferrer"
               onClick={() => setOpen(false)}
             >
-              WhatsApp
+              Contato no Zap
             </a>
           </li>
         </ul>
@@ -63,7 +63,7 @@ export function Nav() {
             target="_blank"
             rel="noreferrer"
           >
-            Comprar
+            Entrar em contato no Zap
           </a>
           <button
             type="button"

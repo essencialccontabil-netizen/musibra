@@ -113,7 +113,7 @@ export function ProductPage() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Quero este no WhatsApp
+                Enviar pedido no Zap
               </a>
               <Link to="/carrinho" className="btn btn-ghost">
                 Ver carrinho

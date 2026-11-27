@@ -23,7 +23,7 @@ export function Footer() {
           <Link to="/catalogo">Catálogo</Link>
           <Link to="/carrinho">Carrinho</Link>
           <a href={wa()} target="_blank" rel="noreferrer">
-            WhatsApp {contact.telefone}
+            Entrar em contato no Zap · {contact.telefone}
           </a>
           <a href={`mailto:${contact.email}`}>{contact.email}</a>
         </div>

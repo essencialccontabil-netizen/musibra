@@ -126,7 +126,7 @@ export function CartPage() {
                 onClick={onCheckout}
                 disabled={placing}
               >
-                {placing ? "Criando pedido…" : "Finalizar no WhatsApp"}
+                {placing ? "Enviando…" : "Enviar pedido no Zap"}
               </button>
               <a
                 className="btn btn-ghost btn-block"
@@ -136,7 +136,7 @@ export function CartPage() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Peça orçamento de frete
+                Entrar em contato no Zap
               </a>
               <Link to="/catalogo" className="btn btn-secondary btn-block">
                 Continuar comprando

@@ -60,9 +60,14 @@ export function HomePage() {
             <Link to="/catalogo" className="btn btn-primary">
               Comprar agora
             </Link>
-            <Link to="/categorias" className="btn btn-outline-light">
-              Explorar categorias
-            </Link>
+            <a
+              className="btn btn-outline-light"
+              href={wa()}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Entrar em contato no Zap
+            </a>
           </div>
         </div>
       </section>
@@ -147,7 +152,7 @@ export function HomePage() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    Quero este
+                    Enviar pedido no Zap
                   </a>
                   <Link to={`/produto/${p.slug}`} className="btn btn-ghost">
                     Ver detalhes
@@ -194,7 +199,7 @@ export function HomePage() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Falar com a proprietária
+                  Entrar em contato no Zap
                 </a>
               </div>
             </div>
@@ -242,7 +247,7 @@ export function HomePage() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Peça orçamento
+                  Entrar em contato no Zap
                 </a>
               </div>
             </div>
