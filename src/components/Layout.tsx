@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Nav } from "./Nav";
 import { Footer } from "./Footer";
 import { StickyCta } from "./StickyCta";
+import { WhatsAppFloat } from "./WhatsAppFloat";
 
 export function Layout() {
   const location = useLocation();
@@ -17,6 +18,7 @@ export function Layout() {
       <Outlet />
       <Footer />
       <StickyCta />
+      <WhatsAppFloat />
     </>
   );
 }

@@ -1,37 +1,20 @@
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
-import { api } from "../api/client";
-import type { Category, Product } from "../api/types";
+import { useCatalog } from "../api/CatalogContext";
 import { ProductCard } from "../components/ProductCard";
 
 export function CategoryPage() {
   const { id = "" } = useParams();
-  const [category, setCategory] = useState<Category | null>(null);
-  const [products, setProducts] = useState<Product[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { categories, products, loading } = useCatalog();
 
-  useEffect(() => {
-    let cancelled = false;
-    setLoading(true);
-    setError(null);
-    api
-      .getCategory(id)
-      .then((data) => {
-        if (cancelled) return;
-        setCategory(data.category);
-        setProducts(data.products);
-      })
-      .catch((err: Error) => {
-        if (!cancelled) setError(err.message);
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false);
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [id]);
+  const category = useMemo(
+    () => categories.find((c) => c.id === id) ?? null,
+    [categories, id],
+  );
+  const categoryProducts = useMemo(
+    () => products.filter((p) => p.categoriaId === id),
+    [products, id],
+  );
 
   if (loading) {
     return (
@@ -43,12 +26,11 @@ export function CategoryPage() {
     );
   }
 
-  if (error || !category) {
+  if (!category) {
     return (
       <main className="page-main">
         <div className="container empty-state">
           <h1>Categoria não encontrada</h1>
-          <p>{error}</p>
           <Link to="/categorias" className="btn btn-primary">
             Ver categorias
           </Link>
@@ -71,7 +53,7 @@ export function CategoryPage() {
           </p>
         </div>
         <div className="plate-wall">
-          {products.map((p) => (
+          {categoryProducts.map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}
         </div>
