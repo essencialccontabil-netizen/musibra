@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../cart/CartContext";
+import { openWhatsApp } from "../api/client";
 import { useCatalog } from "../api/CatalogContext";
 
 function formatPrice(value: number): string {
@@ -29,7 +30,7 @@ export function CartPage() {
     setOrderError(null);
     try {
       const { whatsappUrl } = await placeOrder();
-      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+      openWhatsApp(whatsappUrl);
     } catch (err) {
       setOrderError(err instanceof Error ? err.message : "Falha ao criar pedido");
     }

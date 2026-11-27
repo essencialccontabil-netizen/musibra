@@ -74,5 +74,14 @@ export const api = {
 };
 
 export function whatsappUrl(phone: string, message: string): string {
-  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+  const digits = phone.replace(/\D/g, "");
+  return `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
+}
+
+/** Abre o WhatsApp de forma confiável (evita bloqueio de popup). */
+export function openWhatsApp(url: string): void {
+  const opened = window.open(url, "_blank", "noopener,noreferrer");
+  if (!opened) {
+    window.location.assign(url);
+  }
 }
