@@ -40,6 +40,8 @@ export type Order = {
   customerNote?: string;
   status: "pending_whatsapp" | "received";
   whatsappMessage: string;
+  /** Returned only on create; required to read the order again. */
+  accessToken: string;
 };
 
 function brl(value: number): string {

@@ -67,8 +67,10 @@ export const api = {
       body: JSON.stringify({ items, customerNote }),
     }).then((r) => r.data),
 
-  getOrder: (id: string) =>
-    request<{ data: Order }>(`/api/orders/${id}`).then((r) => r.data),
+  getOrder: (id: string, accessToken: string) =>
+    request<{ data: Order }>(
+      `/api/orders/${id}?token=${encodeURIComponent(accessToken)}`,
+    ).then((r) => r.data),
 };
 
 export function whatsappUrl(phone: string, message: string): string {

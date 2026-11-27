@@ -65,4 +65,5 @@ export type Order = {
   customerNote?: string;
   status: "pending_whatsapp" | "received";
   whatsappMessage: string;
+  accessToken?: string;
 };

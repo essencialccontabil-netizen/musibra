@@ -1,3 +1,4 @@
+import { randomBytes } from "node:crypto";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import {
@@ -9,16 +10,50 @@ import {
   type OrderItemInput,
 } from "./data.js";
 
+const MAX_ORDER_LINES = 30;
+const MAX_QTY_PER_LINE = 99;
+const MAX_NOTE_LEN = 500;
+const MAX_ORDERS_KEPT = 100;
+
+const DEV_ORIGINS = new Set([
+  "http://127.0.0.1:5173",
+  "http://127.0.0.1:4173",
+  "http://127.0.0.1:8787",
+  "http://localhost:5173",
+  "http://localhost:4173",
+  "http://localhost:8787",
+]);
+
+function isAllowedOrigin(origin: string, hostHeader: string | undefined): boolean {
+  if (DEV_ORIGINS.has(origin)) return true;
+  const configured = process.env.MUSIBRAS_CORS_ORIGIN;
+  if (configured && origin === configured) return true;
+  if (!hostHeader) return false;
+  try {
+    return new URL(origin).host === hostHeader;
+  } catch {
+    return false;
+  }
+}
+
+function publicOrder(order: Order) {
+  const { accessToken: _token, ...rest } = order;
+  return rest;
+}
+
 export const app = new Hono();
 
-app.use(
-  "*",
-  cors({
-    origin: "*",
+app.use("*", async (c, next) => {
+  const corsMiddleware = cors({
+    origin: (origin) => {
+      if (!origin) return "";
+      return isAllowedOrigin(origin, c.req.header("host")) ? origin : "";
+    },
     allowMethods: ["GET", "POST", "OPTIONS"],
-    allowHeaders: ["Content-Type"],
-  }),
-);
+    allowHeaders: ["Content-Type", "X-Order-Token"],
+  });
+  return corsMiddleware(c, next);
+});
 
 app.get("/api/health", (c) =>
   c.json({ ok: true, service: "musibras-api", version: "1" }),
@@ -68,11 +103,20 @@ app.post("/api/cart/quote", async (c) => {
   if (!Array.isArray(items) || items.length === 0) {
     return c.json({ error: "Carrinho vazio" }, 400);
   }
+  if (items.length > MAX_ORDER_LINES) {
+    return c.json({ error: "Carrinho excede o limite de itens" }, 400);
+  }
 
   const lines = [];
   for (const item of items) {
     const product = PRODUCTS.find((p) => p.id === item.productId);
-    if (!product || !item.qty || item.qty < 1) {
+    if (
+      !product ||
+      !item.qty ||
+      item.qty < 1 ||
+      item.qty > MAX_QTY_PER_LINE ||
+      !Number.isFinite(item.qty)
+    ) {
       return c.json({ error: `Item inválido: ${item.productId}` }, 400);
     }
     lines.push({
@@ -107,11 +151,26 @@ app.post("/api/orders", async (c) => {
   if (!Array.isArray(items) || items.length === 0) {
     return c.json({ error: "Pedido sem itens" }, 400);
   }
+  if (items.length > MAX_ORDER_LINES) {
+    return c.json({ error: "Pedido excede o limite de itens" }, 400);
+  }
+
+  const note =
+    typeof body?.customerNote === "string" ? body.customerNote.trim() : "";
+  if (note.length > MAX_NOTE_LEN) {
+    return c.json({ error: "Observação muito longa" }, 400);
+  }
 
   const orderItems = [];
   for (const item of items) {
     const product = PRODUCTS.find((p) => p.id === item.productId);
-    if (!product || !item.qty || item.qty < 1) {
+    if (
+      !product ||
+      !item.qty ||
+      item.qty < 1 ||
+      item.qty > MAX_QTY_PER_LINE ||
+      !Number.isFinite(item.qty)
+    ) {
       return c.json({ error: `Item inválido: ${item.productId}` }, 400);
     }
     orderItems.push({
@@ -129,24 +188,34 @@ app.post("/api/orders", async (c) => {
     .join("\n");
   const whatsappMessage = `Olá! Quero finalizar minha compra na MUSIBRAS:\n\n${list}\n\nTotal: ${formatPrice(total)}\n\nPode confirmar disponibilidade, frete e forma de pagamento?`;
 
+  const accessToken = randomBytes(24).toString("hex");
   const order: Order = {
     id: `ord_${Date.now().toString(36)}`,
     createdAt: new Date().toISOString(),
     items: orderItems,
     total,
     totalLabel: formatPrice(total),
-    customerNote: body?.customerNote,
+    customerNote: note || undefined,
     status: "pending_whatsapp",
     whatsappMessage,
+    accessToken,
   };
   ORDERS.unshift(order);
+  if (ORDERS.length > MAX_ORDERS_KEPT) {
+    ORDERS.length = MAX_ORDERS_KEPT;
+  }
   return c.json({ data: order }, 201);
 });
 
 app.get("/api/orders/:id", (c) => {
   const order = ORDERS.find((o) => o.id === c.req.param("id"));
   if (!order) return c.json({ error: "Pedido não encontrado" }, 404);
-  return c.json({ data: order });
+  const token =
+    c.req.query("token") ?? c.req.header("X-Order-Token") ?? undefined;
+  if (!token || token !== order.accessToken) {
+    return c.json({ error: "Pedido não encontrado" }, 404);
+  }
+  return c.json({ data: publicOrder(order) });
 });
 
 app.get("/api/contact", (c) =>
