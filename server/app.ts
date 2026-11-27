@@ -221,8 +221,18 @@ app.get("/api/orders/:id", (c) => {
 app.get("/api/contact", (c) =>
   c.json({
     data: {
-      whatsapp: process.env.MUSIBRAS_WHATSAPP ?? "5511999999999",
-      cidade: process.env.MUSIBRAS_CIDADE ?? "São Paulo, SP",
+      whatsapp: process.env.MUSIBRAS_WHATSAPP ?? "556193118261",
+      telefone: process.env.MUSIBRAS_TELEFONE ?? "(61) 9311-8261",
+      cidade: process.env.MUSIBRAS_CIDADE ?? "Brasília, DF",
+      endereco:
+        process.env.MUSIBRAS_ENDERECO ??
+        "Q CRS 511 Bloco C Loja 51, Asa Sul, Brasília - DF, CEP 70.361-500",
+      cnpj: process.env.MUSIBRAS_CNPJ ?? "41.651.974/0001-12",
+      razaoSocial:
+        process.env.MUSIBRAS_RAZAO_SOCIAL ??
+        "MUSICAL BRASILIA INSTRUMENTOS MUSICAIS LTDA",
+      nomeFantasia: process.env.MUSIBRAS_NOME_FANTASIA ?? "MUSICAL BRASILIA",
+      email: process.env.MUSIBRAS_EMAIL ?? "musicalbrasilia@gmail.com",
       mensagemPadrao:
         "Olá! Vim pela loja online da MUSIBRAS e quero finalizar uma compra.",
     },

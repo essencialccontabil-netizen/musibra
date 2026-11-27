@@ -221,11 +221,15 @@ export function HomePage() {
               <div className="contact-meta">
                 <div>
                   <strong>WhatsApp</strong>
-                  {contact.whatsapp}
+                  {contact.telefone}
                 </div>
                 <div>
                   <strong>Envio</strong>
                   A partir de {contact.cidade}
+                </div>
+                <div>
+                  <strong>Endereço</strong>
+                  {contact.endereco}
                 </div>
               </div>
               <div className="contact-actions">

@@ -22,7 +22,13 @@ export type Product = {
 
 export type ContactInfo = {
   whatsapp: string;
+  telefone: string;
   cidade: string;
+  endereco: string;
+  cnpj: string;
+  razaoSocial: string;
+  nomeFantasia: string;
+  email: string;
   mensagemPadrao: string;
 };
 

@@ -21,8 +21,14 @@ type CatalogState = {
 };
 
 const defaultContact: ContactInfo = {
-  whatsapp: "5511999999999",
-  cidade: "São Paulo, SP",
+  whatsapp: "556193118261",
+  telefone: "(61) 9311-8261",
+  cidade: "Brasília, DF",
+  endereco: "Q CRS 511 Bloco C Loja 51, Asa Sul, Brasília - DF, CEP 70.361-500",
+  cnpj: "41.651.974/0001-12",
+  razaoSocial: "MUSICAL BRASILIA INSTRUMENTOS MUSICAIS LTDA",
+  nomeFantasia: "MUSICAL BRASILIA",
+  email: "musicalbrasilia@gmail.com",
   mensagemPadrao:
     "Olá! Vim pela loja online da MUSIBRAS e quero finalizar uma compra.",
 };
