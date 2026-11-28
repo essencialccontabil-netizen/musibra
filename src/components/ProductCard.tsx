@@ -55,7 +55,7 @@ export function ProductCard({ product }: { product: Product }) {
             target="_blank"
             rel="noreferrer"
           >
-            Quero este no WhatsApp
+            Enviar pedido no Zap
           </a>
         </div>
       </div>

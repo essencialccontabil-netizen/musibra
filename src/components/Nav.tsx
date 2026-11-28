@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useCart } from "../cart/CartContext";
 import { useCatalog } from "../api/CatalogContext";
+import { MusibrasLogo } from "./MusibrasLogo";
 
 export function Nav() {
   const { count } = useCart();
@@ -19,8 +20,13 @@ export function Nav() {
   return (
     <header className={`site-nav${scrolled ? " scrolled" : ""}`}>
       <div className="container">
-        <Link to="/" className="nav-brand" onClick={() => setOpen(false)}>
-          MUSIBRAS
+        <Link
+          to="/"
+          className="nav-brand"
+          onClick={() => setOpen(false)}
+          aria-label="MUSIBRAS — início"
+        >
+          <MusibrasLogo variant="full" className="nav-logo" />
         </Link>
 
         <ul className={`nav-links${open ? " open" : ""}`}>
@@ -46,7 +52,7 @@ export function Nav() {
               rel="noreferrer"
               onClick={() => setOpen(false)}
             >
-              WhatsApp
+              Contato no Zap
             </a>
           </li>
         </ul>
@@ -63,7 +69,7 @@ export function Nav() {
             target="_blank"
             rel="noreferrer"
           >
-            Comprar
+            Entrar em contato no Zap
           </a>
           <button
             type="button"

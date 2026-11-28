@@ -67,10 +67,30 @@ export const api = {
       body: JSON.stringify({ items, customerNote }),
     }).then((r) => r.data),
 
-  getOrder: (id: string) =>
-    request<{ data: Order }>(`/api/orders/${id}`).then((r) => r.data),
+  getOrder: (id: string, accessToken: string) =>
+    request<{ data: Order }>(
+      `/api/orders/${id}?token=${encodeURIComponent(accessToken)}`,
+    ).then((r) => r.data),
 };
 
+/** Link WhatsApp que abre no app ou no WhatsApp Web — sem forçar instalação. */
 export function whatsappUrl(phone: string, message: string): string {
-  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+  const digits = phone.replace(/\D/g, "");
+  return `https://api.whatsapp.com/send?phone=${digits}&text=${encodeURIComponent(message)}`;
+}
+
+/** Abre o WhatsApp (app ou Web) sem exigir instalação obrigatória. */
+export function openWhatsApp(url: string): void {
+  const opened = window.open(url, "_blank", "noopener,noreferrer");
+  if (!opened) {
+    window.location.assign(url);
+  }
+}
+
+export function orderEmailUrl(
+  email: string,
+  subject: string,
+  body: string,
+): string {
+  return `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }

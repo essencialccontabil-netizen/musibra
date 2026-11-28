@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { api } from "../api/client";
-import type { Product } from "../api/types";
 import { useCart } from "../cart/CartContext";
 import { useCatalog } from "../api/CatalogContext";
 import { ProductCard } from "../components/ProductCard";
@@ -9,34 +7,19 @@ import { ProductCard } from "../components/ProductCard";
 export function ProductPage() {
   const { slug = "" } = useParams();
   const { add } = useCart();
-  const { wa } = useCatalog();
-  const [product, setProduct] = useState<Product | null>(null);
-  const [related, setRelated] = useState<Product[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { wa, products, loading } = useCatalog();
   const [added, setAdded] = useState(false);
 
-  useEffect(() => {
-    let cancelled = false;
-    setLoading(true);
-    setError(null);
-    api
-      .getProduct(slug)
-      .then((data) => {
-        if (cancelled) return;
-        setProduct(data.product);
-        setRelated(data.related);
-      })
-      .catch((err: Error) => {
-        if (!cancelled) setError(err.message);
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false);
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [slug]);
+  const product = useMemo(
+    () => products.find((p) => p.slug === slug) ?? null,
+    [products, slug],
+  );
+  const related = useMemo(() => {
+    if (!product) return [];
+    return products
+      .filter((p) => p.categoriaId === product.categoriaId && p.id !== product.id)
+      .slice(0, 3);
+  }, [products, product]);
 
   if (loading) {
     return (
@@ -48,12 +31,11 @@ export function ProductPage() {
     );
   }
 
-  if (error || !product) {
+  if (!product) {
     return (
       <main className="page-main">
         <div className="container empty-state">
           <h1>Produto não encontrado</h1>
-          <p>{error}</p>
           <Link to="/catalogo" className="btn btn-primary">
             Voltar ao catálogo
           </Link>
@@ -90,13 +72,11 @@ export function ProductPage() {
             <p className="pdp-price">{product.precoLabel}</p>
             <p className="pdp-summary">{product.resumo}</p>
             <p className="pdp-desc">{product.descricao}</p>
-
             <ul className="pdp-trust">
               <li>Atendimento da proprietária no WhatsApp</li>
               <li>Frete calculado na hora da compra</li>
               <li>Garantia da loja digital MUSIBRAS</li>
             </ul>
-
             <div className="pdp-actions">
               <button
                 type="button"
@@ -113,7 +93,7 @@ export function ProductPage() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Quero este no WhatsApp
+                Enviar pedido no Zap
               </a>
               <Link to="/carrinho" className="btn btn-ghost">
                 Ver carrinho

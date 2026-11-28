@@ -39,7 +39,7 @@ export function StickyCta() {
             target="_blank"
             rel="noreferrer"
           >
-            Finalizar compra
+            Enviar pedido no Zap
           </a>
         </div>
       </div>

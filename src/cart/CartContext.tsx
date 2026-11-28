@@ -117,13 +117,43 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const placeOrder = useCallback(async () => {
     setPlacing(true);
     try {
-      const order = await api.createOrder(items);
-      const url = whatsappUrl(contact.whatsapp, order.whatsappMessage);
-      return { order, whatsappUrl: url };
+      try {
+        const order = await api.createOrder(items);
+        const url = whatsappUrl(contact.whatsapp, order.whatsappMessage);
+        return { order, whatsappUrl: url };
+      } catch {
+        // Sem API no host: monta a mensagem no cliente e abre o Zap.
+        const list = lines
+          .map(
+            (l) =>
+              `• ${l.product.nome} (x${l.qty}) — ${formatPrice(l.lineTotal)}`,
+          )
+          .join("\n");
+        const whatsappMessage = `Olá! Quero finalizar minha compra na MUSIBRAS:\n\n${list}\n\nTotal: ${formatPrice(total)}\n\nPode confirmar disponibilidade, frete e forma de pagamento?`;
+        const order = {
+          id: `local_${Date.now().toString(36)}`,
+          createdAt: new Date().toISOString(),
+          items: lines.map((l) => ({
+            productId: l.product.id,
+            nome: l.product.nome,
+            qty: l.qty,
+            unitPrice: l.product.preco,
+            lineTotal: l.lineTotal,
+          })),
+          total,
+          totalLabel: formatPrice(total),
+          status: "pending_whatsapp" as const,
+          whatsappMessage,
+        };
+        return {
+          order,
+          whatsappUrl: whatsappUrl(contact.whatsapp, whatsappMessage),
+        };
+      }
     } finally {
       setPlacing(false);
     }
-  }, [items, contact.whatsapp]);
+  }, [items, lines, total, contact.whatsapp]);
 
   const value: CartContextValue = {
     items,

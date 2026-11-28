@@ -21,10 +21,11 @@ npm start
 
 Serve `dist/` + API na porta `PORT` (padrão 8787).
 
-## Editar WhatsApp / cidade
+## Contato / empresa
 
-1. Variáveis de ambiente: `MUSIBRAS_WHATSAPP` (só dígitos, ex. `5511999999999`) e `MUSIBRAS_CIDADE`
-2. Ou defaults em `server/app.ts` → rota `GET /api/contact`
+Defaults (CNPJ Musical Brasília): WhatsApp `556193118261`, Brasília-DF.
+
+Override via env: `MUSIBRAS_WHATSAPP`, `MUSIBRAS_CIDADE`, `MUSIBRAS_ENDERECO`, `MUSIBRAS_CNPJ`, `MUSIBRAS_EMAIL`, etc. — ou em `server/app.ts` → `GET /api/contact`.
 
 ## API
 
