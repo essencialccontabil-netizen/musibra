@@ -43,8 +43,8 @@ export function CartPage() {
           <span className="eyebrow">Carrinho</span>
           <h1>Sua seleção</h1>
           <p>
-            Revise os itens e finalize no WhatsApp — o pedido é registrado na
-            API antes do checkout.
+            Revise os itens e envie o pedido pelo WhatsApp (app ou Web) ou por
+            e-mail — preços de referência, confirmamos tudo no atendimento.
           </p>
         </div>
 
@@ -113,7 +113,7 @@ export function CartPage() {
                 <strong>{totalLabel}</strong>
               </div>
               <p className="summary-note">
-                Frete calculado no checkout via WhatsApp · Envio a partir de{" "}
+                Frete e pagamento no atendimento · Envio a partir de{" "}
                 {contact.cidade}
               </p>
               {orderError && (
@@ -127,7 +127,7 @@ export function CartPage() {
                 onClick={onCheckout}
                 disabled={placing}
               >
-                {placing ? "Enviando…" : "Enviar pedido no Zap"}
+                {placing ? "Enviando…" : "Enviar pedido no WhatsApp"}
               </button>
               <a
                 className="btn btn-ghost btn-block"
@@ -137,9 +137,22 @@ export function CartPage() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Entrar em contato no Zap
+                Falar no WhatsApp (app ou Web)
               </a>
-              <Link to="/catalogo" className="btn btn-secondary btn-block">
+              <a
+                className="btn btn-secondary btn-block"
+                href={`mailto:${contact.email}?subject=${encodeURIComponent("Pedido MUSIBRAS")}&body=${encodeURIComponent(
+                  `Olá! Quero finalizar um pedido na MUSIBRAS.\n\nItens:\n${lines
+                    .map(
+                      ({ product, qty }) =>
+                        `• ${product.nome} × ${qty} — ${product.precoLabel}`,
+                    )
+                    .join("\n")}\n\nTotal: ${totalLabel}\n\nPode confirmar disponibilidade e frete?`,
+                )}`}
+              >
+                Enviar pedido por e-mail
+              </a>
+              <Link to="/catalogo" className="btn btn-ghost btn-block">
                 Continuar comprando
               </Link>
             </aside>

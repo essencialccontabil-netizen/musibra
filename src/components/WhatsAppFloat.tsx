@@ -1,5 +1,5 @@
 const WA_URL =
-  "https://wa.me/556193118261?text=" +
+  "https://api.whatsapp.com/send?phone=556193118261&text=" +
   encodeURIComponent(
     "Olá! Vim pela loja online da MUSIBRAS e quero finalizar uma compra.",
   );

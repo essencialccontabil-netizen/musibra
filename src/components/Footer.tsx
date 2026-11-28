@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useCatalog } from "../api/CatalogContext";
+import { MusibrasLogo } from "./MusibrasLogo";
 
 export function Footer() {
   const { contact, wa } = useCatalog();
@@ -7,7 +8,9 @@ export function Footer() {
     <footer className="site-footer">
       <div className="container footer-row">
         <div>
-          <div className="footer-brand">MUSIBRAS</div>
+          <div className="footer-brand">
+            <MusibrasLogo variant="full" className="footer-logo" />
+          </div>
           <p className="footer-note">
             {contact.nomeFantasia} · Envio a partir de {contact.cidade}
           </p>
@@ -23,9 +26,9 @@ export function Footer() {
           <Link to="/catalogo">Catálogo</Link>
           <Link to="/carrinho">Carrinho</Link>
           <a href={wa()} target="_blank" rel="noreferrer">
-            Entrar em contato no Zap · {contact.telefone}
+            WhatsApp · {contact.telefone}
           </a>
-          <a href={`mailto:${contact.email}`}>{contact.email}</a>
+          <a href={`mailto:${contact.email}`}>E-mail · {contact.email}</a>
         </div>
       </div>
     </footer>
