@@ -351,21 +351,35 @@ button {
   background: rgba(255, 248, 238, 0.92);
 }
 
-.site-nav .container {
+.site-nav .container.nav-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  width: min(1180px, calc(100% - 2.75rem));
+}
+
+.nav-end {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-left: auto;
 }
 
 .nav-brand {
   display: inline-flex;
   align-items: center;
   line-height: 0;
+  margin-left: 0.25rem;
+  padding: 0.28rem 0.45rem 0.28rem 0.35rem;
+  background: #fff8ee;
+  border: 1px solid rgba(166, 124, 61, 0.45);
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(46, 33, 24, 0.08);
 }
 
 .nav-logo {
-  width: clamp(10rem, 30vw, 12.5rem);
+  width: clamp(9.5rem, 28vw, 12rem);
   height: auto;
   display: block;
 }
@@ -1608,8 +1622,21 @@ button {
     display: inline-flex;
   }
 
+  .nav-zap {
+    display: none;
+  }
+
   .nav-toggle {
     display: grid;
+  }
+
+  .nav-end {
+    margin-left: auto;
+    justify-content: flex-end;
+  }
+
+  .nav-links.open {
+    z-index: 40;
   }
 
   .product-plate,

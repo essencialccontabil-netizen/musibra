@@ -13,12 +13,12 @@ export function MusibrasLogo({
   title = "MUSIBRAS",
 }: MusibrasLogoProps) {
   const isLight = tone === "light";
-  // Soft cream / walnut — readable without harsh black/white punch
-  const ink = isLight ? "#F7F0E4" : "#2E2118";
-  const brass = isLight ? "#E2C79A" : "#9A7A4A";
-  const markBg = isLight ? "rgba(247, 240, 228, 0.92)" : "#2E2118";
-  const markGlyph = isLight ? "#8B4A52" : "#D4BF96";
-  const markRing = isLight ? "#E2C79A" : "#C4A574";
+  // Soft on hero (light); high-contrast plate on cream nav (ink)
+  const ink = isLight ? "#F7F0E4" : "#1A110C";
+  const brass = isLight ? "#E2C79A" : "#A67C3D";
+  const markBg = isLight ? "rgba(247, 240, 228, 0.92)" : "#FFF8EE";
+  const markGlyph = isLight ? "#8B4A52" : "#8B2B3C";
+  const markRing = isLight ? "#E2C79A" : "#A67C3D";
 
   const mark = (
     <g aria-hidden="true">

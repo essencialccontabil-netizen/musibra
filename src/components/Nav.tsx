@@ -19,16 +19,7 @@ export function Nav() {
 
   return (
     <header className={`site-nav${scrolled ? " scrolled" : ""}`}>
-      <div className="container">
-        <Link
-          to="/"
-          className="nav-brand"
-          onClick={() => setOpen(false)}
-          aria-label="MUSIBRAS — início"
-        >
-          <MusibrasLogo variant="full" className="nav-logo" />
-        </Link>
-
+      <div className="container nav-bar">
         <ul className={`nav-links${open ? " open" : ""}`}>
           <li>
             <NavLink to="/catalogo" onClick={() => setOpen(false)}>
@@ -57,12 +48,12 @@ export function Nav() {
           </li>
         </ul>
 
-        <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+        <div className="nav-end">
           <Link to="/carrinho" className="btn btn-secondary btn-sm nav-cta">
             Carrinho{count > 0 ? ` · ${count}` : ""}
           </Link>
           <a
-            className="btn btn-primary btn-sm"
+            className="btn btn-primary btn-sm nav-zap"
             href={wa(
               `Olá! Quero comprar na MUSIBRAS (envio para ${contact.cidade}).`,
             )}
@@ -71,6 +62,14 @@ export function Nav() {
           >
             Entrar em contato no Zap
           </a>
+          <Link
+            to="/"
+            className="nav-brand"
+            onClick={() => setOpen(false)}
+            aria-label="MUSIBRAS — início"
+          >
+            <MusibrasLogo variant="full" tone="ink" className="nav-logo" />
+          </Link>
           <button
             type="button"
             className="nav-toggle"
