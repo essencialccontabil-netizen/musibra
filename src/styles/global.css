@@ -3,21 +3,22 @@
    Not Shopify grid. Not neon rock shop. Not newspaper. */
 
 :root {
-  --ivory: #f6efe3;
-  --cream: #fff8ee;
-  --vellum: #ebe1d0;
-  --ink: #1c120d;
-  --espresso: #2a1a12;
-  --walnut: #4a2e20;
-  --wine: #7a2433;
-  --wine-deep: #561821;
-  --brass: #8f7348;
-  --brass-light: #d2b888;
-  --muted: #6e5d4d;
-  --line: rgba(28, 18, 13, 0.14);
-  --line-soft: rgba(28, 18, 13, 0.07);
-  --glow-warm: rgba(143, 115, 72, 0.18);
-  --radius: 2px;
+  /* Soft atelier palette — gentle contrast, warm light */
+  --ivory: #f8f3ea;
+  --cream: #fffaf3;
+  --vellum: #efe6d6;
+  --ink: #2e2118;
+  --espresso: #3a2a20;
+  --walnut: #6b4a36;
+  --wine: #8b4a52;
+  --wine-deep: #734045;
+  --brass: #9a7a4a;
+  --brass-light: #e2c79a;
+  --muted: #6d5c4d;
+  --line: rgba(46, 33, 24, 0.12);
+  --line-soft: rgba(46, 33, 24, 0.06);
+  --glow-warm: rgba(154, 122, 74, 0.14);
+  --radius: 4px;
   --font-display: "Cormorant Garamond", "Times New Roman", serif;
   --font-body: "Figtree", system-ui, sans-serif;
   --nav-h: 4.5rem;
@@ -364,7 +365,7 @@ button {
 }
 
 .nav-logo {
-  width: clamp(9.5rem, 28vw, 11.5rem);
+  width: clamp(10rem, 30vw, 12.5rem);
   height: auto;
   display: block;
 }
@@ -469,8 +470,8 @@ button {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(105deg, rgba(28, 18, 13, 0.82) 0%, rgba(28, 18, 13, 0.42) 46%, rgba(28, 18, 13, 0.2) 100%),
-    linear-gradient(0deg, rgba(28, 18, 13, 0.78) 0%, transparent 52%);
+    linear-gradient(105deg, rgba(46, 33, 24, 0.62) 0%, rgba(46, 33, 24, 0.28) 48%, rgba(46, 33, 24, 0.12) 100%),
+    linear-gradient(0deg, rgba(46, 33, 24, 0.55) 0%, transparent 55%);
 }
 
 .hero-content {
@@ -488,10 +489,15 @@ button {
 }
 
 .hero-logo {
-  width: min(28rem, 88vw);
+  width: min(30rem, 90vw);
   height: auto;
   display: block;
-  filter: drop-shadow(0 18px 50px rgba(0, 0, 0, 0.35));
+  padding: 0.85rem 1.1rem 0.85rem 0.75rem;
+  background: rgba(46, 33, 24, 0.28);
+  border: 1px solid rgba(226, 199, 154, 0.35);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.22));
 }
 
 .hero-brand::after {
@@ -687,22 +693,20 @@ button {
 .salon-media img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  min-height: 420px;
+  object-fit: contain;
+  min-height: 360px;
+  padding: 1rem;
+  background: linear-gradient(160deg, #fffdf8 0%, #efe6d6 100%);
   transition: transform 0.8s var(--ease-out);
-  filter: contrast(1.04) saturate(0.92);
+  filter: brightness(1.05) saturate(1.02);
 }
 
 .salon-piece:hover .salon-media img {
-  transform: scale(1.04);
+  transform: scale(1.02);
 }
 
 .salon-media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  box-shadow: inset 0 0 80px rgba(28, 18, 13, 0.18);
-  pointer-events: none;
+  content: none;
 }
 
 .salon-copy {
@@ -799,29 +803,27 @@ button {
 .product-plate .media {
   aspect-ratio: 5 / 4;
   overflow: hidden;
-  background: var(--vellum);
+  background: linear-gradient(160deg, #fffdf8 0%, #f3e9d8 100%);
   position: relative;
 }
 
 .product-plate .media img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s var(--ease-out), filter 0.4s ease;
-  filter: saturate(0.9) contrast(1.03);
+  object-fit: contain;
+  object-position: center;
+  padding: 0.55rem;
+  transition: transform 0.55s var(--ease-out), filter 0.35s ease;
+  filter: brightness(1.06) saturate(1.02);
 }
 
 .product-plate:hover .media img {
-  transform: scale(1.05);
-  filter: saturate(1) contrast(1.05);
+  transform: scale(1.03);
+  filter: brightness(1.08) saturate(1.05);
 }
 
 .product-plate .media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at center, transparent 50%, rgba(28, 18, 13, 0.22) 100%);
-  pointer-events: none;
+  content: none;
 }
 
 .product-plate .plate-no {
@@ -832,8 +834,11 @@ button {
   font-family: var(--font-display);
   font-size: 0.85rem;
   letter-spacing: 0.14em;
-  color: var(--cream);
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+  color: var(--ink);
+  background: rgba(255, 250, 243, 0.82);
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  text-shadow: none;
 }
 
 .product-plate .body {
@@ -920,7 +925,7 @@ button {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 25%, rgba(28, 18, 13, 0.86) 100%);
+  background: linear-gradient(180deg, transparent 35%, rgba(46, 33, 24, 0.62) 100%);
   z-index: -1;
 }
 
@@ -1126,6 +1131,64 @@ button {
   display: block;
 }
 
+/* Soft guitar lineup */
+.guitar-row-section {
+  padding-top: 1rem;
+}
+
+.guitar-row {
+  display: flex;
+  gap: 0.9rem;
+  overflow-x: auto;
+  padding: 0.35rem max(1.25rem, calc((100% - 1180px) / 2 + 1.25rem)) 1.25rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.guitar-tile {
+  flex: 0 0 min(11.5rem, 72vw);
+  scroll-snap-align: start;
+  background: var(--cream);
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  padding: 0.65rem 0.65rem 0.85rem;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 10px 28px rgba(46, 33, 24, 0.05);
+  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
+}
+
+.guitar-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(46, 33, 24, 0.09);
+}
+
+.guitar-tile img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  background: linear-gradient(160deg, #fffdf8, #efe6d6);
+  border-radius: 8px;
+  display: block;
+}
+
+.guitar-tile-name {
+  display: block;
+  margin-top: 0.65rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.guitar-tile-price {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--brass);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
 .footer-note {
   color: var(--muted);
   font-size: 0.88rem;
@@ -1269,17 +1332,15 @@ button {
 .pdp-media img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  min-height: 480px;
-  filter: saturate(0.92) contrast(1.04);
+  object-fit: contain;
+  min-height: 420px;
+  padding: 1.25rem;
+  background: linear-gradient(160deg, #fffdf8 0%, #f3e9d8 100%);
+  filter: brightness(1.05) saturate(1.02);
 }
 
 .pdp-media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  box-shadow: inset 0 0 100px rgba(28, 18, 13, 0.2);
-  pointer-events: none;
+  content: none;
 }
 
 .pdp-badge {

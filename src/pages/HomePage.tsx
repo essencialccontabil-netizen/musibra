@@ -9,7 +9,7 @@ function plateNo(id: string): string {
 }
 
 export function HomePage() {
-  const { categories, featured, contact, wa, loading, error, refresh } =
+  const { categories, products, featured, contact, wa, loading, error, refresh } =
     useCatalog();
   const { add } = useCart();
 
@@ -128,11 +128,40 @@ export function HomePage() {
         </div>
       </section>
 
+      <section className="section guitar-row-section">
+        <div className="container section-head">
+          <span className="eyebrow">Cordas em fila</span>
+          <h2>Guitarras enfileiradas</h2>
+          <p>Várias opções lado a lado — fotos claras, preços de referência.</p>
+        </div>
+        <div className="guitar-row" aria-label="Guitarras">
+          {products
+            .filter(
+              (p) =>
+                p.slug.includes("guitarra") ||
+                p.slug.includes("violao") ||
+                p.slug.includes("contrabaixo"),
+            )
+            .slice(0, 6)
+            .map((p) => (
+              <Link
+                key={p.id}
+                to={`/produto/${p.slug}`}
+                className="guitar-tile"
+              >
+                <img src={p.imagem} alt={p.nome} loading="lazy" />
+                <span className="guitar-tile-name">{p.nome}</span>
+                <span className="guitar-tile-price">{p.precoLabel}</span>
+              </Link>
+            ))}
+        </div>
+      </section>
+
       <section className="section" style={{ paddingTop: "2rem" }}>
         <div className="container section-head">
           <span className="eyebrow">Peças em destaque</span>
           <h2>Seleção da proprietária</h2>
-          <p>Preços à vista. Adicione ao carrinho ou feche direto no WhatsApp.</p>
+          <p>Preços à vista. Adicione ao carrinho ou fale no WhatsApp / e-mail.</p>
         </div>
         <div className="salon-list">
           {featured.slice(0, 5).map((p) => (

@@ -12,49 +12,48 @@ export function formatPrice(value: number): string {
   return brl(value);
 }
 
+/** Fotos Unsplash um pouco mais claras (bri/exp). */
+function photo(id: string, w = 1200): string {
+  return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80&bri=12&exp=8`;
+}
+
 /** Preços de referência para visão do catálogo — ajustáveis por cliente. */
 export const CATEGORIES: Category[] = [
   {
     id: "pianos",
     nome: "Pianos",
     descricao: "Acústicos e digitais com entrega e montagem",
-    imagem:
-      "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?auto=format&fit=crop&w=900&q=80",
+    imagem: photo("photo-1520523839897-bd0b52f945a0", 900),
   },
   {
     id: "cordas",
     nome: "Cordas",
     descricao: "Violões, guitarras, viola, violino e baixo",
-    imagem:
-      "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=900&q=80",
+    imagem: photo("photo-1510915361894-db8b60106cb1", 900),
   },
   {
     id: "teclas",
     nome: "Teclas",
     descricao: "Teclados, sintetizadores e sanfonas",
-    imagem:
-      "https://images.unsplash.com/photo-1552422535-c45813c61732?auto=format&fit=crop&w=900&q=80",
+    imagem: photo("photo-1552422535-c45813c61732", 900),
   },
   {
     id: "percussao",
     nome: "Percussão",
     descricao: "Baterias, pandeiros, tantã e ritmo",
-    imagem:
-      "https://images.unsplash.com/photo-1571327073757-71d13c24de30?auto=format&fit=crop&w=900&q=80",
+    imagem: photo("photo-1571327073757-71d13c24de30", 900),
   },
   {
     id: "sopro",
     nome: "Sopro",
     descricao: "Sax, flauta, trompete, gaita e metais",
-    imagem:
-      "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=900&q=80",
+    imagem: photo("photo-1516280440614-37939bbacd81", 900),
   },
   {
     id: "acessorios",
     nome: "Acessórios",
     descricao: "Cabos, estantes, cases e cuidados",
-    imagem:
-      "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=900&q=80",
+    imagem: photo("photo-1598488035139-bdbb2231ce04", 900),
   },
 ];
 
@@ -69,11 +68,10 @@ export const PRODUCTS: Product[] = [
     precoLabel: brl(18900),
     resumo: "Acabamento em nogueira, afinação inclusa na entrega.",
     descricao:
-      "Piano vertical com sonoridade equilibrada para estudo e performance em casa. Preço de referência — confirme disponibilidade e frete no atendimento.",
+      "Piano vertical com sonoridade equilibrada. Preço de referência — confirme disponibilidade e frete.",
     destaque: true,
     estoque: "sob encomenda",
-    imagem:
-      "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?auto=format&fit=crop&w=1200&q=80",
+    imagem: photo("photo-1520523839897-bd0b52f945a0"),
   },
   {
     id: "p2",
@@ -85,11 +83,10 @@ export const PRODUCTS: Product[] = [
     precoLabel: brl(6290),
     resumo: "Teclas ponderadas, Bluetooth e suporte incluso.",
     descricao:
-      "Ideal para apartamento: 88 teclas ponderadas, timbres premium e conexão Bluetooth. Envio protegido com garantia da loja.",
+      "Ideal para apartamento: 88 teclas ponderadas e timbres premium.",
     destaque: true,
     estoque: "pronta entrega",
-    imagem:
-      "https://images.unsplash.com/photo-1552422535-c45813c61732?auto=format&fit=crop&w=1200&q=80",
+    imagem: photo("photo-1552422535-c45813c61732"),
   },
   {
     id: "p3",
@@ -101,11 +98,10 @@ export const PRODUCTS: Product[] = [
     precoLabel: brl(2490),
     resumo: "Tampo em cedro, ação confortável para estudo.",
     descricao:
-      "Violão clássico com tampo em cedro e laterais selecionadas. Pronto para envio com capa e set de cordas reserva.",
-    destaque: true,
+      "Violão clássico com tampo em cedro. Pronto para envio com capa.",
+    destaque: false,
     estoque: "pronta entrega",
-    imagem:
-      "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=1200&q=80",
+    imagem: photo("photo-1510915361894-db8b60106cb1"),
   },
   {
     id: "p4",
@@ -117,11 +113,10 @@ export const PRODUCTS: Product[] = [
     precoLabel: brl(3890),
     resumo: "Corpo semi-oco, versátil para jazz e blues.",
     descricao:
-      "Semi-acústica com timbre quente e definição. Inclui case rígido sob consulta e setup inicial antes do envio.",
+      "Semi-acústica com timbre quente. Setup inicial antes do envio.",
     destaque: true,
     estoque: "últimas unidades",
-    imagem:
-      "https://images.unsplash.com/photo-1525201548942-d8732f6617a0?auto=format&fit=crop&w=1200&q=80",
+    imagem: photo("photo-1525201548942-d8732f6617a0"),
   },
   {
     id: "p13",
@@ -133,11 +128,55 @@ export const PRODUCTS: Product[] = [
     precoLabel: brl(2790),
     resumo: "Três single-coils, braço maple, pronta para palco.",
     descricao:
-      "Guitarra estilo Strat com timbre clássico rock/pop. Setup na loja; preço de referência sujeito a confirmação.",
+      "Estilo Strat com timbre clássico rock/pop. Preço de referência.",
     destaque: true,
     estoque: "pronta entrega",
-    imagem:
-      "https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?auto=format&fit=crop&w=1200&q=80",
+    imagem: photo("photo-1564186763535-ebb21ef5277f"),
+  },
+  {
+    id: "p23",
+    slug: "guitarra-les-paul",
+    nome: "Guitarra Les Paul Style",
+    categoriaId: "cordas",
+    categoria: "Cordas",
+    preco: 4590,
+    precoLabel: brl(4590),
+    resumo: "Corpo mahogany, humbuckers — rock e blues.",
+    descricao:
+      "Visual Les Paul com sustain encorpado. Confirme acabamento no atendimento.",
+    destaque: true,
+    estoque: "pronta entrega",
+    imagem: photo("photo-1516924962500-2b4b3b99ea02"),
+  },
+  {
+    id: "p24",
+    slug: "guitarra-folk-aco",
+    nome: "Guitarra Folk Aço",
+    categoriaId: "cordas",
+    categoria: "Cordas",
+    preco: 2190,
+    precoLabel: brl(2190),
+    resumo: "Tampo spruce, ótima para voz e dedilhado.",
+    descricao:
+      "Folk de aço clara e projetada. Ideal para estudo e gravação em casa.",
+    destaque: true,
+    estoque: "pronta entrega",
+    imagem: photo("photo-1605020420620-20c943cc4669"),
+  },
+  {
+    id: "p25",
+    slug: "guitarra-telecaster",
+    nome: "Guitarra Tele Style",
+    categoriaId: "cordas",
+    categoria: "Cordas",
+    preco: 3290,
+    precoLabel: brl(3290),
+    resumo: "Single-coils claros, corpo alder.",
+    descricao:
+      "Tele style com ataque definido — country, indie e rock. Preço ilustrativo.",
+    destaque: true,
+    estoque: "pronta entrega",
+    imagem: photo("photo-1493225457124-a3eb161ffa5f"),
   },
   {
     id: "p5",
@@ -149,11 +188,10 @@ export const PRODUCTS: Product[] = [
     precoLabel: brl(1790),
     resumo: "Kit completo: arco, breu e estojo.",
     descricao:
-      "Kit de violino para quem está começando com qualidade de verdade. Ajustado na loja antes de seguir para o seu endereço.",
+      "Kit de violino para iniciantes com qualidade de verdade.",
     destaque: false,
     estoque: "pronta entrega",
-    imagem:
-      "https://images.unsplash.com/photo-1460036521480-ff49c08c2781?auto=format&fit=crop&w=1200&q=80",
+    imagem: photo("photo-1460036521480-ff49c08c2781"),
   },
   {
     id: "p14",
@@ -163,13 +201,12 @@ export const PRODUCTS: Product[] = [
     categoria: "Cordas",
     preco: 2890,
     precoLabel: brl(2890),
-    resumo: "Tamanho 16\", arco e estojo inclusos.",
+    resumo: 'Tamanho 16", arco e estojo inclusos.',
     descricao:
-      "Viola com sonoridade equilibrada para orquestra e estudo avançado. Preço ilustrativo do catálogo online.",
-    destaque: true,
+      "Viola equilibrada para orquestra e estudo avançado.",
+    destaque: false,
     estoque: "sob encomenda",
-    imagem:
-      "https://images.unsplash.com/photo-1612225330812-01a9c6b355ec?auto=format&fit=crop&w=1200&q=80",
+    imagem: photo("photo-1612225330812-01a9c6b355ec"),
   },
   {
     id: "p15",
@@ -179,13 +216,12 @@ export const PRODUCTS: Product[] = [
     categoria: "Cordas",
     preco: 3190,
     precoLabel: brl(3190),
-    resumo: "Corpo alder, captadores ativos opcionais.",
+    resumo: "Corpo alder, versátil para banda e estúdio.",
     descricao:
-      "Baixo versátil para banda e estúdio. Frete e parcelamento sob consulta no atendimento.",
+      "Baixo claro e definido. Frete sob consulta.",
     destaque: false,
     estoque: "pronta entrega",
-    imagem:
-      "https://images.unsplash.com/photo-1556449895-a33c06b380fa?auto=format&fit=crop&w=1200&q=80",
+    imagem: photo("photo-1507838153414-b4b713384a76"),
   },
   {
     id: "p6",
@@ -197,11 +233,10 @@ export const PRODUCTS: Product[] = [
     precoLabel: brl(3250),
     resumo: "Centenas de ritmos e USB para gravar.",
     descricao:
-      "Arranjador completo para ensaio, igreja e shows. Envio com fonte e pedal; suporte no primeiro uso.",
+      "Arranjador completo para ensaio, igreja e shows.",
     destaque: true,
     estoque: "pronta entrega",
-    imagem:
-      "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1200&q=80",
+    imagem: photo("photo-1511379938547-c1f69419868d"),
   },
   {
     id: "p16",
@@ -213,11 +248,10 @@ export const PRODUCTS: Product[] = [
     precoLabel: brl(4590),
     resumo: "Acordeão compacto para forró e folclore.",
     descricao:
-      "Sanfona 8 baixos com case acolchoado. Ideal para quem quer começar no forró com instrumento sério — preço de referência.",
+      "Sanfona 8 baixos com case. Preço de referência do catálogo.",
     destaque: true,
     estoque: "sob encomenda",
-    imagem:
-      "https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?auto=format&fit=crop&w=1200&q=80",
+    imagem: "/instruments/sanfona.svg",
   },
   {
     id: "p7",
@@ -229,11 +263,10 @@ export const PRODUCTS: Product[] = [
     precoLabel: brl(5790),
     resumo: "Shell maple, ferragens incluídas.",
     descricao:
-      "Kit maple com pedais e bancos. Embalagem reforçada para frete; montagem orientada por vídeo se preferir.",
+      "Kit maple com pedais e bancos. Embalagem reforçada.",
     destaque: true,
     estoque: "sob encomenda",
-    imagem:
-      "https://images.unsplash.com/photo-1461784180009-21121b2f204c?auto=format&fit=crop&w=1200&q=80",
+    imagem: photo("photo-1461784180009-21121b2f204c"),
   },
   {
     id: "p17",
@@ -245,11 +278,10 @@ export const PRODUCTS: Product[] = [
     precoLabel: brl(4290),
     resumo: "Pads mesh silenciosos, módulo com kits.",
     descricao:
-      "Perfeita para apartamento: resposta natural e fone incluso. Catálogo com preço ilustrativo.",
-    destaque: true,
+      "Perfeita para apartamento: resposta natural e fone incluso.",
+    destaque: false,
     estoque: "pronta entrega",
-    imagem:
-      "https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?auto=format&fit=crop&w=1200&q=80",
+    imagem: photo("photo-1519892300165-cb5542fb47c7"),
   },
   {
     id: "p8",
@@ -260,12 +292,10 @@ export const PRODUCTS: Product[] = [
     preco: 890,
     precoLabel: brl(890),
     resumo: "Resposta rápida, ideal para upgrade.",
-    descricao:
-      "Snare 14\" com cordal preciso. Envio rápido e garantia da MUSIBRAS.",
+    descricao: 'Snare 14" com cordal preciso.',
     destaque: false,
     estoque: "pronta entrega",
-    imagem:
-      "https://images.unsplash.com/photo-1571327073757-71d13c24de30?auto=format&fit=crop&w=1200&q=80",
+    imagem: photo("photo-1571327073757-71d13c24de30"),
   },
   {
     id: "p18",
@@ -277,11 +307,10 @@ export const PRODUCTS: Product[] = [
     precoLabel: brl(420),
     resumo: "Pele animal, platinelas secas — samba e choro.",
     descricao:
-      "Pandeiro profissional 10\" para roda e ensaio. Preço de referência do catálogo.",
+      "Pandeiro profissional 10\" para roda e ensaio.",
     destaque: true,
     estoque: "pronta entrega",
-    imagem:
-      "https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?auto=format&fit=crop&w=1200&q=80",
+    imagem: "/instruments/pandeiro.svg",
   },
   {
     id: "p19",
@@ -292,12 +321,10 @@ export const PRODUCTS: Product[] = [
     preco: 680,
     precoLabel: brl(680),
     resumo: "Corpo em madeira, pele afinável.",
-    descricao:
-      "Tantã para samba e batucada. Leve e com boa projeção — confirme estoque no atendimento.",
+    descricao: "Tantã para samba e batucada.",
     destaque: false,
     estoque: "pronta entrega",
-    imagem:
-      "https://images.unsplash.com/photo-1571327073757-71d13c24de30?auto=format&fit=crop&w=1200&q=80",
+    imagem: "/instruments/tantan.svg",
   },
   {
     id: "p9",
@@ -308,12 +335,10 @@ export const PRODUCTS: Product[] = [
     preco: 6120,
     precoLabel: brl(6120),
     resumo: "Acabamento laqueado, case e bocal.",
-    descricao:
-      "Sax alto laqueado com case e acessórios. Revisado antes do envio; parcelamento sob consulta.",
+    descricao: "Sax alto revisado antes do envio.",
     destaque: true,
     estoque: "últimas unidades",
-    imagem:
-      "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80",
+    imagem: photo("photo-1516280440614-37939bbacd81"),
   },
   {
     id: "p20",
@@ -324,12 +349,10 @@ export const PRODUCTS: Product[] = [
     preco: 7890,
     precoLabel: brl(7890),
     resumo: "Timbre encorpado, case rígido incluso.",
-    descricao:
-      "Sax tenor para jazz, gospel e banda. Preço ilustrativo — confirme modelo e acabamento.",
-    destaque: true,
+    descricao: "Sax tenor para jazz, gospel e banda.",
+    destaque: false,
     estoque: "sob encomenda",
-    imagem:
-      "https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=1200&q=80",
+    imagem: photo("photo-1511192336575-5a79af67a629"),
   },
   {
     id: "p10",
@@ -340,12 +363,10 @@ export const PRODUCTS: Product[] = [
     preco: 1450,
     precoLabel: brl(1450),
     resumo: "Leve, afinada e pronta para aula.",
-    descricao:
-      "Flauta transversal em níquel com estojo rígido. Ideal para estudantes — envio em 24–48h úteis.",
+    descricao: "Flauta transversal em níquel com estojo.",
     destaque: false,
     estoque: "pronta entrega",
-    imagem:
-      "https://images.unsplash.com/photo-1609139003551-ee40f5f73ec0?auto=format&fit=crop&w=1200&q=80",
+    imagem: photo("photo-1609139003551-ee40f5f73ec0"),
   },
   {
     id: "p21",
@@ -356,12 +377,10 @@ export const PRODUCTS: Product[] = [
     preco: 2680,
     precoLabel: brl(2680),
     resumo: "Bocal e case — escola de música e banda.",
-    descricao:
-      "Trompete em Sib com acabamento laqueado. Preço de referência do catálogo online.",
+    descricao: "Trompete em Sib laqueado. Preço de referência.",
     destaque: true,
     estoque: "pronta entrega",
-    imagem:
-      "https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=1200&q=80",
+    imagem: "/instruments/trompete.svg",
   },
   {
     id: "p22",
@@ -372,12 +391,10 @@ export const PRODUCTS: Product[] = [
     preco: 189,
     precoLabel: brl(189),
     resumo: "10 furos, blues e folk.",
-    descricao:
-      "Gaita diatônica em Dó, compacta e afinada. Ótima porta de entrada — preço ilustrativo.",
+    descricao: "Gaita diatônica em Dó — preço ilustrativo.",
     destaque: false,
     estoque: "pronta entrega",
-    imagem:
-      "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80",
+    imagem: "/instruments/gaita.svg",
   },
   {
     id: "p11",
@@ -388,12 +405,10 @@ export const PRODUCTS: Product[] = [
     preco: 189,
     precoLabel: brl(189),
     resumo: "2 cabos instrument + 1 cabo de microfone.",
-    descricao:
-      "Kit essencial para ensaio e gravação. Frete econômico e estoque renovado toda semana.",
+    descricao: "Kit essencial para ensaio e gravação.",
     destaque: false,
     estoque: "pronta entrega",
-    imagem:
-      "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1200&q=80",
+    imagem: photo("photo-1598488035139-bdbb2231ce04"),
   },
   {
     id: "p12",
@@ -404,11 +419,9 @@ export const PRODUCTS: Product[] = [
     preco: 520,
     precoLabel: brl(520),
     resumo: "Proteção total para envios e viagens.",
-    descricao:
-      "Case rígido acolchoado, trava reforçada. Combine com sua guitarra no carrinho.",
+    descricao: "Case rígido acolchoado, trava reforçada.",
     destaque: false,
     estoque: "pronta entrega",
-    imagem:
-      "https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?auto=format&fit=crop&w=1200&q=80",
+    imagem: photo("photo-1564186763535-ebb21ef5277f"),
   },
 ];
