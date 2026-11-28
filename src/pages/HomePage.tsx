@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useCatalog } from "../api/CatalogContext";
 import { useCart } from "../cart/CartContext";
+import { MusibrasLogo } from "../components/MusibrasLogo";
 
 function plateNo(id: string): string {
   const n = Number(id.replace(/\D/g, "")) || 1;
@@ -47,14 +48,22 @@ export function HomePage() {
           />
         </div>
         <div className="hero-content">
-          <h1 className="hero-brand reveal">MUSIBRAS</h1>
+          <h1 className="hero-brand reveal">
+            <MusibrasLogo
+              variant="full"
+              tone="light"
+              className="hero-logo"
+              title="MUSIBRAS"
+            />
+            <span className="visually-hidden">MUSIBRAS</span>
+          </h1>
           <p className="hero-headline reveal reveal-delay-1">
             Atelier digital de instrumentos — compre online com curadoria da
             proprietária.
           </p>
           <p className="hero-line reveal reveal-delay-2">
-            Catálogo via API, carrinho e checkout no WhatsApp. Frete para todo o
-            Brasil.
+            Catálogo com preços de referência, carrinho e contato por WhatsApp ou
+            e-mail. Frete para todo o Brasil.
           </p>
           <div className="hero-actions reveal reveal-delay-3">
             <Link to="/catalogo" className="btn btn-primary">
@@ -66,7 +75,10 @@ export function HomePage() {
               target="_blank"
               rel="noreferrer"
             >
-              Entrar em contato no Zap
+              Falar no WhatsApp
+            </a>
+            <a className="btn btn-outline-light" href={`mailto:${contact.email}`}>
+              E-mail
             </a>
           </div>
         </div>
@@ -220,13 +232,17 @@ export function HomePage() {
             <div>
               <h2>Pronto para comprar?</h2>
               <p>
-                Monte o pedido ou chame no WhatsApp — fechamos disponibilidade,
-                frete e pagamento com você.
+                Monte o pedido e fale conosco pelo WhatsApp (app ou Web) ou
+                e-mail — fechamos disponibilidade, frete e pagamento com você.
               </p>
               <div className="contact-meta">
                 <div>
                   <strong>WhatsApp</strong>
                   {contact.telefone}
+                </div>
+                <div>
+                  <strong>E-mail</strong>
+                  {contact.email}
                 </div>
                 <div>
                   <strong>Envio</strong>
@@ -247,15 +263,18 @@ export function HomePage() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Entrar em contato no Zap
+                  Falar no WhatsApp
+                </a>
+                <a className="btn btn-ghost" href={`mailto:${contact.email}`}>
+                  Escrever no e-mail
                 </a>
               </div>
             </div>
             <aside className="contact-aside">
-              <h3>Checkout no WhatsApp</h3>
+              <h3>Sem app obrigatório</h3>
               <p>
-                Compra 100% digital, com o calor de um atendimento humano — sem
-                visita obrigatória.
+                No computador o WhatsApp abre no navegador (Web). Prefere e-mail?
+                Use {contact.email} — mesmo atendimento humano.
               </p>
             </aside>
           </div>

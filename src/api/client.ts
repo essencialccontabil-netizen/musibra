@@ -73,15 +73,24 @@ export const api = {
     ).then((r) => r.data),
 };
 
+/** Link WhatsApp que abre no app ou no WhatsApp Web — sem forçar instalação. */
 export function whatsappUrl(phone: string, message: string): string {
   const digits = phone.replace(/\D/g, "");
-  return `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
+  return `https://api.whatsapp.com/send?phone=${digits}&text=${encodeURIComponent(message)}`;
 }
 
-/** Abre o WhatsApp de forma confiável (evita bloqueio de popup). */
+/** Abre o WhatsApp (app ou Web) sem exigir instalação obrigatória. */
 export function openWhatsApp(url: string): void {
   const opened = window.open(url, "_blank", "noopener,noreferrer");
   if (!opened) {
     window.location.assign(url);
   }
+}
+
+export function orderEmailUrl(
+  email: string,
+  subject: string,
+  body: string,
+): string {
+  return `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
