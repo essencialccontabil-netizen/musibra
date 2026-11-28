@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 640" fill="none">
+  <rect width="800" height="640" fill="#FFF8EE"/>
+  <rect x="40" y="40" width="720" height="560" rx="18" fill="#F6EFE3" stroke="#D2B888" stroke-width="2"/>
+  <rect x="160" y="270" width="480" height="100" rx="12" fill="#1C120D"/>
+  <g fill="#D2B888">
+    <rect x="190" y="290" width="28" height="60" rx="3"/>
+    <rect x="235" y="290" width="28" height="60" rx="3"/>
+    <rect x="280" y="290" width="28" height="60" rx="3"/>
+    <rect x="325" y="290" width="28" height="60" rx="3"/>
+    <rect x="370" y="290" width="28" height="60" rx="3"/>
+    <rect x="415" y="290" width="28" height="60" rx="3"/>
+    <rect x="460" y="290" width="28" height="60" rx="3"/>
+    <rect x="505" y="290" width="28" height="60" rx="3"/>
+    <rect x="550" y="290" width="28" height="60" rx="3"/>
+    <rect x="595" y="290" width="28" height="60" rx="3"/>
+  </g>
+  <text x="400" y="560" text-anchor="middle" fill="#8F7348" font-family="Georgia, serif" font-size="28" letter-spacing="4">GAITA</text>
+</svg>
